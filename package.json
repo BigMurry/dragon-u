@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "build": "next build",
     "start": "next build && node ui.server.js"
   },
   "dependencies": {
