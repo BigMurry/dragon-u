@@ -10,6 +10,7 @@ class MyDocument extends Document {
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta charSet='utf-8' />
           <link rel='shortcut icon' type='image/jpeg' href='/static/assets/favicon.png' />
+          <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
         </Head>
         <body>
           <Main />

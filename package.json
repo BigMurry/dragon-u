@@ -14,6 +14,7 @@
     "@material-ui/core": "^3.7.1",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/styles": "^3.0.0-alpha.4",
+    "classnames": "^2.2.6",
     "dragon-g": "^1.0.3",
     "fastify": "^1.13.3",
     "fastify-formbody": "^2.0.3",
