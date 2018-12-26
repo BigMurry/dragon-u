@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'dice:ui',
+      name: 'dragon:ui',
       script: './ui.server.js',
       env: {
         NODE_ENV: 'development'
