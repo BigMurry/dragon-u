@@ -101,7 +101,16 @@ let Index = ({dispatchGeneFetch, genes = {}}) => {
       <Grid container className={classes.upper}>
         <Grid item sm={12} md={6} lg={4} >
           <Paper className={classes.inputCont} elevation={1}>
-            <InputBase className={classes.input} placeholder={'dragon id #'} value={dragonId} onChange={e => setDragonId(e.target.value)} />
+            <InputBase className={classes.input} placeholder={'dragon id #'}
+              value={dragonId}
+              spellCheck={false}
+              onChange={e => setDragonId(e.target.value)}
+              onKeyDown={event => {
+                if (event.key === 'Enter') {
+                  dispatchGeneFetch(dragonId);
+                }
+              }}
+              />
             <IconButton className={classes.iconButton} aria-label={'Search'} onClick={e => dispatchGeneFetch(dragonId)}>
               <SearchIcon />
             </IconButton>
