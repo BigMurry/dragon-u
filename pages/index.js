@@ -94,7 +94,7 @@ function dominantSlot(genes = []) {
 
 let Index = ({dispatchGeneFetch, genes = {}}) => {
   const classes = useStyles();
-  const [dragonId, setDragonId] = useState(1834);
+  const [dragonId, setDragonId] = useState();
   const codes = _chunk(_get(genes, [dragonId, 'allCodes'], []), 4);
   return (
     <Root>
