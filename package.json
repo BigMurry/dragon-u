@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "build": "next build",
+    "go": "node ui.server.js",
     "start": "next build && node ui.server.js"
   },
   "dependencies": {
