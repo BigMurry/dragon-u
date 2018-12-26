@@ -15,7 +15,7 @@ app.prepare().then(() => {
       return handle(request.req, reply.res);
     })
   ;
-  fastify.listen(port, err => {
+  fastify.listen(port, '0.0.0.0', err => {
     if (err) throw err;
     console.log(`running at ${dev ? 'develop mode' : 'production mode'}.`);
     console.log(`ui on: http://localhost:${port}`);
