@@ -51,13 +51,18 @@ const Conf = {
   }
 };
 
+const cache = {};
 function getContractInstance(web3, name, network = 1) {
-  const abi = _.get(Conf, [name, 'abi']);
-  const addr = _.get(Conf, [name, 'networks', network, 'addr']);
-  if (!abi || !addr) {
-    throw new Error(`Contract [${name}] not found or Network [${network}] not found.`);
+  const key = `${name}-${network}`;
+  if (!cache.hasOwnProperty(key)) {
+    const abi = _.get(Conf, [name, 'abi']);
+    const addr = _.get(Conf, [name, 'networks', network, 'addr']);
+    if (!abi || !addr) {
+      throw new Error(`Contract [${name}] not found or Network [${network}] not found.`);
+    }
+    cache[key] = new web3.eth.Contract(abi, addr);
   }
-  return new web3.eth.Contract(abi, addr);
+  return cache[key];
 }
 
 function getInitBlock(name, _network = 1) {

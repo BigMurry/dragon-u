@@ -64,7 +64,7 @@ function * updateAccount(action) {
     if (typeof window.web3 !== 'undefined') {
       web3 = new Web3(window.web3.currentProvider);
     } else {
-      web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+      web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/bf28a9be07f4453bb111125224c1c9ba'));
     }
     yield put(setWeb3Store(web3));
   }
@@ -85,10 +85,12 @@ function * fetchDataSaga(action) {}
 function * fetchGeneSaga(action) {
   const {id} = action.payload;
   let web3 = yield select(state => _get(state, 'web3', null));
-  const dragon721 = getContractInstance(web3, '721');
-  const rawGenes = yield call(dragon721.methods.getGenome(id).call);
-  const parsedGene = parse(rawGenes);
-  yield put(setParsedGeneStore(id, parsedGene));
+  if (web3) {
+    const dragon721 = getContractInstance(web3, '721');
+    const rawGenes = yield call(dragon721.methods.getGenome(id).call);
+    const parsedGene = parse(rawGenes);
+    yield put(setParsedGeneStore(id, parsedGene));
+  }
 }
 
 export default function * rootSaga() {

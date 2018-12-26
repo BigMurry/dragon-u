@@ -1,10 +1,11 @@
 import '../styles/bootstrap';
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import cn from 'classnames';
+import Router from 'next/router';
 
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
@@ -92,10 +93,19 @@ function dominantSlot(genes = []) {
   return 0;
 }
 
-let Index = ({dispatchGeneFetch, genes = {}}) => {
+function jumpTo(query) {
+  Router.push(`/?q=${query}`);
+}
+
+let Index = ({dispatchGeneFetch, genes = {}, initDragon}) => {
   const classes = useStyles();
-  const [dragonId, setDragonId] = useState();
-  const codes = _chunk(_get(genes, [dragonId, 'allCodes'], []), 4);
+  const [dragonId, setDragonId] = useState(initDragon);
+
+  useEffect(() => {
+    dispatchGeneFetch(initDragon);
+  });
+
+  const codes = _chunk(_get(genes, [initDragon, 'allCodes'], []), 4);
   return (
     <Root>
       <Grid container className={classes.upper}>
@@ -107,11 +117,11 @@ let Index = ({dispatchGeneFetch, genes = {}}) => {
               onChange={e => setDragonId(e.target.value)}
               onKeyDown={event => {
                 if (event.key === 'Enter') {
-                  dispatchGeneFetch(dragonId);
+                  jumpTo(dragonId);
                 }
               }}
               />
-            <IconButton className={classes.iconButton} aria-label={'Search'} onClick={e => dispatchGeneFetch(dragonId)}>
+            <IconButton className={classes.iconButton} aria-label={'Search'} onClick={e => jumpTo(dragonId)}>
               <SearchIcon />
             </IconButton>
           </Paper>
@@ -166,8 +176,21 @@ let Index = ({dispatchGeneFetch, genes = {}}) => {
   );
 };
 
+function parseQuery(query) {
+  return parseInt(query, 10);
+}
+
+Index.getInitialProps = async ({query = {}}) => {
+  const {q} = query;
+  const initDragon = parseQuery(q);
+  if (initDragon > 0) {
+    return {initDragon};
+  }
+  return {};
+};
+
 Index = connect(
-  ({genes}) => ({genes}),
+  ({genes, web3}) => ({genes, web3}),
   (dispatch) => ({
     dispatchGeneFetch: bindActionCreators(fetchGeneSaga, dispatch)
   })
