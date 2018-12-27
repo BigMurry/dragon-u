@@ -106,7 +106,7 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
     if (web3) {
       dispatchGeneFetch(initDragon);
     }
-  }, [refetch]);
+  }, [refetch, web3]);
 
   const codes = _chunk(_get(genes, [initDragon, 'allCodes'], []), 4);
   return (
