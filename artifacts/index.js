@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const DistributionABI = require('./abi/DragonDistribution.json').abi;
-const MainBaseABI = require('./abi/DragonMainBase.json').abi;
-const EventsABI = require('./abi/Events.json').abi;
-const Dragon721ABI = require('./abi/Dragon721.json').abi;
+import _get from 'lodash/get';
+import {abi as DistributionABI} from './abi/DragonDistribution.json';
+import {abi as MainBaseABI} from './abi/DragonMainBase.json';
+import {abi as EventsABI} from './abi/Events.json';
+import {abi as Dragon721ABI} from './abi/Dragon721.json';
 
 const Conf = {
   'Distribution': {
@@ -55,8 +55,8 @@ const cache = {};
 function getContractInstance(web3, name, network = 1) {
   const key = `${name}-${network}`;
   if (!cache.hasOwnProperty(key)) {
-    const abi = _.get(Conf, [name, 'abi']);
-    const addr = _.get(Conf, [name, 'networks', network, 'addr']);
+    const abi = _get(Conf, [name, 'abi']);
+    const addr = _get(Conf, [name, 'networks', network, 'addr']);
     if (!abi || !addr) {
       throw new Error(`Contract [${name}] not found or Network [${network}] not found.`);
     }
@@ -66,15 +66,15 @@ function getContractInstance(web3, name, network = 1) {
 }
 
 function getInitBlock(name, _network = 1) {
-  return _.get(Conf, [name, 'networks', _network, 'initBlock'], 0);
+  return _get(Conf, [name, 'networks', _network, 'initBlock'], 0);
 }
 
 function getAddr(name, _network = 1) {
-  return _.get(Conf, [name, 'networks', _network, 'addr']);
+  return _get(Conf, [name, 'networks', _network, 'addr']);
 }
 
 function getAbi(name) {
-  return _.get(Conf, [name, 'abi']);
+  return _get(Conf, [name, 'abi']);
 }
 
 export {
