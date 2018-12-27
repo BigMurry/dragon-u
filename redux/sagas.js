@@ -14,8 +14,6 @@ import {
   setErrorStore
 } from './store';
 
-// import {fetchAPI, fetchSelf} from './lib/fetch';
-
 function heartbeat(interval) {
   return eventChannel(emitter => {
     setTimeout(() => {
@@ -31,34 +29,7 @@ function heartbeat(interval) {
     };
   });
 }
-/*
-async function fetchData(uri, headers, method, body) {
-  try {
-    const data = await fetchAPI(uri, {
-      headers,
-      method: ~['GET', 'POST', 'PUT', 'DELETE'].indexOf(method) ? method : 'GET',
-      body
-    });
-    if (data.error) {
-      return {error: data};
-    }
-    return {data};
-  } catch (error) {
-    return {error};
-  }
-}
 
-// set cookie
-async function refresh(token) {
-  const ok = await fetchSelf('/bind', {
-    method: 'POST',
-    body: {accessToken: token}
-  });
-  return ok;
-}
-*/
-
-// update wallet address and activties
 function * updateAccount(action) {
   let web3 = yield select(state => _get(state, 'web3', null));
   if (!web3 && typeof window !== 'undefined') {
@@ -83,8 +54,6 @@ function * updateAccount(action) {
   }
 }
 
-function * fetchDataSaga(action) {}
-
 function * fetchGeneSaga(action) {
   const {id} = action.payload;
   let web3 = yield select(state => _get(state, 'web3', null));
@@ -106,7 +75,6 @@ export default function * rootSaga() {
   const walletChann = heartbeat(1000); // 1s heartbeat
   yield all([
     takeEvery(walletChann, updateAccount),
-    takeEvery('FETCH_DATA_SAGA', fetchDataSaga),
     takeEvery('FETCH_GENE_SAGA', fetchGeneSaga)
   ]);
 }
