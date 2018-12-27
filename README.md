@@ -1,13 +1,13 @@
 # dragon-u
 tools ui for dragonereum
 
-# How to run locally
+# How to run
 ```
 yarn
 yarn start
 ```
 
-# How to deploy to a server by using docker
+# or by Docker
 ```
 sh run.sh
 ```
