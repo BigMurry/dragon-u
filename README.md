@@ -1,7 +1,7 @@
 # dragon-u
 tools ui for dragonereum
 
-# live at
+# Live at
 https://dragon.localkitty.co
 
 # How to run
@@ -10,7 +10,7 @@ yarn
 yarn start
 ```
 
-# or by Docker
+# Or by Docker
 ```
 sh run.sh
 ```
