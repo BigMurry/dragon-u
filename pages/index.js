@@ -103,7 +103,7 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
   const [dragonId, setDragonId] = useState(initDragon);
 
   useEffect(() => {
-    if (web3) {
+    if (web3 && initDragon) {
       dispatchGeneFetch(initDragon);
     }
   }, [refetch, web3]);
