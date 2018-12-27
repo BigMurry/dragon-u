@@ -49,7 +49,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   label: {
-    flexBasis: '60px'
+    flexBasis: '40px',
+    fontSize: '0.8em'
   },
   codes: {
     flex: 1,
@@ -65,11 +66,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'rgba(220, 220, 220, 0.2)'
   },
   gene: {
-    fontSize: '0.7em',
-    marginRight: '2px'
+    fontSize: '0.6em',
+    marginRight: '5px'
   },
   level: {
-    fontSize: '0.2em'
+    fontSize: '0.7em'
   },
   domi: {
     fontWeight: '600'
@@ -94,22 +95,24 @@ function dominantSlot(genes = []) {
 }
 
 function jumpTo(query) {
-  Router.push(`/?q=${query}`);
+  Router.push(`/?q=${query}&_r=${new Date().getTime()}`);
 }
 
-let Index = ({dispatchGeneFetch, genes = {}, initDragon}) => {
+let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) => {
   const classes = useStyles();
   const [dragonId, setDragonId] = useState(initDragon);
 
   useEffect(() => {
-    dispatchGeneFetch(initDragon);
-  });
+    if (web3) {
+      dispatchGeneFetch(initDragon);
+    }
+  }, [refetch]);
 
   const codes = _chunk(_get(genes, [initDragon, 'allCodes'], []), 4);
   return (
     <Root>
       <Grid container className={classes.upper}>
-        <Grid item sm={12} md={6} lg={4} >
+        <Grid item xs={12} sm={12} md={6} lg={4} >
           <Paper className={classes.inputCont} elevation={1}>
             <InputBase className={classes.input} placeholder={'dragon id #'}
               value={dragonId}
@@ -181,12 +184,12 @@ function parseQuery(query) {
 }
 
 Index.getInitialProps = async ({query = {}}) => {
-  const {q} = query;
+  const {q, _r} = query;
   const initDragon = parseQuery(q);
   if (initDragon > 0) {
-    return {initDragon};
+    return {initDragon, refetch: _r};
   }
-  return {};
+  return {refetch: _r};
 };
 
 Index = connect(

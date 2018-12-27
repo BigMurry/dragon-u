@@ -10,7 +10,8 @@ import {parse} from 'dragon-g';
 import {
   setWeb3Store,
   setAccountStore,
-  setParsedGeneStore
+  setParsedGeneStore,
+  setErrorStore
 } from './store';
 
 // import {fetchAPI, fetchSelf} from './lib/fetch';
@@ -69,14 +70,16 @@ function * updateAccount(action) {
     yield put(setWeb3Store(web3));
   }
   if (web3) {
-    const connected = yield call(web3.eth.net.isListening);
-    if (connected) {
-      yield call(tryEnableWeb3);
-      const accounts = yield call(web3.eth.getAccounts);
-      if (accounts && accounts.length > 0) {
-        yield put(setAccountStore(_toLower(accounts[0])));
+    try {
+      const connected = yield call(web3.eth.net.isListening);
+      if (connected) {
+        yield call(tryEnableWeb3);
+        const accounts = yield call(web3.eth.getAccounts);
+        if (accounts && accounts.length > 0) {
+          yield put(setAccountStore(_toLower(accounts[0])));
+        }
       }
-    }
+    } catch (e) {}
   }
 }
 
@@ -86,10 +89,16 @@ function * fetchGeneSaga(action) {
   const {id} = action.payload;
   let web3 = yield select(state => _get(state, 'web3', null));
   if (web3) {
-    const dragon721 = getContractInstance(web3, '721');
-    const rawGenes = yield call(dragon721.methods.getGenome(id).call);
-    const parsedGene = parse(rawGenes);
-    yield put(setParsedGeneStore(id, parsedGene));
+    try {
+      const dragon721 = getContractInstance(web3, '721');
+      const rawGenes = yield call(dragon721.methods.getGenome(id).call);
+      const parsedGene = parse(rawGenes);
+      yield put(setParsedGeneStore(id, parsedGene));
+    } catch (e) {
+      yield put(setErrorStore(new Date().getTime(), 'web3 request failed.', 'error'));
+    }
+  } else {
+    yield put(setErrorStore(new Date().getTime(), 'web3 not ready.', 'info'));
   }
 }
 

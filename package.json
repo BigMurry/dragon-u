@@ -24,6 +24,7 @@
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "next-redux-wrapper": "^2.1.0",
+    "notistack": "^0.4.1",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-helmet": "^5.2.0",

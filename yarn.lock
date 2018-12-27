@@ -4344,6 +4344,10 @@ normalize-scroll-left@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-scroll-left/-/normalize-scroll-left-0.1.2.tgz#6b79691ba79eb5fb107fa5edfbdc06b55caee2aa"
 
+notistack@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-0.4.1.tgz#1f1367a0f4d9542641aed300dd332985a1d0047a"
+
 npm-bundled@^1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.5.tgz#3c1732b7ba936b3a10325aef616467c0ccbcc979"
