@@ -2069,9 +2069,9 @@ domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
 
-dragon-g@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/dragon-g/-/dragon-g-1.0.3.tgz#36be6d0920717be491e8caf37e545bf4ff11f34c"
+dragon-g@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/dragon-g/-/dragon-g-1.0.4.tgz#18aa1f0ecdb378ce43828148c7a607a6d50775f3"
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -3926,6 +3926,10 @@ md5.js@^1.3.4:
     hash-base "^3.0.0"
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
+
+mdi-material-ui@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/mdi-material-ui/-/mdi-material-ui-5.7.0.tgz#856ef619893aff10c5ecce5578d0a1e2e89958e4"
 
 media-typer@0.3.0:
   version "0.3.0"

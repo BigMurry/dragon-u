@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import Router from 'next/router';
+import Link from 'next/link';
 
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,11 +14,15 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CoolnessIcon from 'mdi-material-ui/StarCircle';
+import StrengthIcon from 'mdi-material-ui/Mushroom';
+import Chip from '@material-ui/core/Chip';
 
 import { fetchGeneSaga } from '../redux/store';
 import Root from '../components/Root';
 import _get from 'lodash/get';
 import _chunk from 'lodash/chunk';
+import {getCoolnessScore, getSkills, getDS} from 'dragon-g';
 
 const useStyles = makeStyles(theme => ({
   upper: {
@@ -41,7 +46,32 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  info: {
+    marginBottom: '20px',
+    padding: '15px',
+    backgroundColor: 'rgba(247, 51, 120, 0.05)'
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  score: {
+    margin: '20px 0'
+  },
+  chip: {
+    marginRight: '15px'
+  },
+  skills: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  skill: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
   dragon: {
+  },
+  genes: {
     padding: '10px'
   },
   part: {
@@ -98,6 +128,8 @@ function jumpTo(query) {
   Router.push(`/?q=${query}&_r=${new Date().getTime()}`);
 }
 
+const SKILL_NAME = ['Attack', 'Defense', 'Stamina', 'Speed', 'Intelligence'];
+
 let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) => {
   const classes = useStyles();
   const [dragonId, setDragonId] = useState(initDragon);
@@ -109,6 +141,15 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
   }, [refetch, web3]);
 
   const codes = _chunk(_get(genes, [initDragon, 'allCodes'], []), 4);
+  const parsed = _get(genes, initDragon);
+  let coolnessScore;
+  let skills;
+  let ds;
+  if (parsed) {
+    coolnessScore = getCoolnessScore(parsed);
+    skills = getSkills(parsed.dominants);
+    ds = getDS(skills);
+  }
   return (
     <Root>
       <Grid container className={classes.upper}>
@@ -136,40 +177,75 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
             {
               codes.length > 0 &&
               <Paper className={classes.dragon}>
-                {
-                codes.map((c, idx) => {
-                  const activeSlot = dominantSlot(c);
-                  return (
-                    <div className={classes.part} key={idx}>
-                      <Typography className={classes.label}>{c[0].bodyPart}</Typography>
-                      <div className={classes.codes}>
-                        {
-                          c.map((item, slot) => {
-                            return (
-                              <div key={`${idx}-${slot}`} className={cn(classes.cell, {[classes.active]: activeSlot === slot})}>
-                                <Typography className={cn(
-                                  classes.gene,
-                                  {
-                                    [classes.domi]: item.isDominant,
-                                    [classes.rare]: item.geneVariatyIdx >= 5,
-                                    [classes.epic]: item.geneVariatyIdx >= 8
-                                  })}>{item.geneVariaty}</Typography>
-                                <Typography className={cn(
-                                  classes.level,
-                                  {
-                                    [classes.domi]: item.isDominant,
-                                    [classes.rare]: item.geneVariatyIdx >= 5,
-                                    [classes.epic]: item.geneVariatyIdx >= 8
-                                  })}>{item.geneLevel}</Typography>
-                              </div>
-                            );
-                          })
-                        }
+                <div className={classes.info}>
+                  <Link href={`https://dapp.dragonereum.io/marketplace/dragons/${initDragon}`}>
+                    <a className={classes.link} target={'_blank'}><Typography variant={'h6'}>{`#${initDragon}`}</Typography></a>
+                  </Link>
+                  <div className={classes.score}>
+                    <Chip
+                      icon={<CoolnessIcon />}
+                      label={coolnessScore / 100}
+                      className={classes.chip}
+                      color='secondary'
+                      variant='outlined'
+                      />
+                    <Chip
+                      icon={<StrengthIcon />}
+                      label={ds}
+                      className={classes.chip}
+                      color='secondary'
+                      variant='outlined'
+                      />
+                  </div>
+                  <div className={classes.skills}>
+                    {
+                      skills.map((sk, idx) => {
+                        return (
+                          <div className={classes.skill} key={idx}>
+                            <Typography className={classes.skLabel} variant={'caption'}>{SKILL_NAME[idx]}</Typography>
+                            <Typography className={classes.skValue}>{sk / 100}</Typography>
+                          </div>
+                        );
+                      })
+                    }
+                  </div>
+                </div>
+                <div className={classes.genes}>
+                  {
+                  codes.map((c, idx) => {
+                    const activeSlot = dominantSlot(c);
+                    return (
+                      <div className={classes.part} key={idx}>
+                        <Typography className={classes.label}>{c[0].bodyPart}</Typography>
+                        <div className={classes.codes}>
+                          {
+                            c.map((item, slot) => {
+                              return (
+                                <div key={`${idx}-${slot}`} className={cn(classes.cell, {[classes.active]: activeSlot === slot})}>
+                                  <Typography className={cn(
+                                    classes.gene,
+                                    {
+                                      [classes.domi]: item.isDominant,
+                                      [classes.rare]: item.geneVariatyIdx >= 5,
+                                      [classes.epic]: item.geneVariatyIdx >= 8
+                                    })}>{item.geneVariaty}</Typography>
+                                  <Typography className={cn(
+                                    classes.level,
+                                    {
+                                      [classes.domi]: item.isDominant,
+                                      [classes.rare]: item.geneVariatyIdx >= 5,
+                                      [classes.epic]: item.geneVariatyIdx >= 8
+                                    })}>{item.geneLevel}</Typography>
+                                </div>
+                              );
+                            })
+                          }
+                        </div>
                       </div>
-                    </div>
-                  );
-                })
-                }
+                    );
+                  })
+                  }
+                </div>
               </Paper>
             }
           </Grid>
