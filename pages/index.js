@@ -16,7 +16,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CoolnessIcon from 'mdi-material-ui/StarCircle';
 import StrengthIcon from 'mdi-material-ui/Mushroom';
+import LinkIcon from 'mdi-material-ui/LinkVariant';
 import Chip from '@material-ui/core/Chip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { fetchGeneSaga } from '../redux/store';
 import Root from '../components/Root';
@@ -51,8 +53,19 @@ const useStyles = makeStyles(theme => ({
     padding: '15px',
     backgroundColor: 'rgba(247, 51, 120, 0.05)'
   },
+  head: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    marginRight: '10px',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
+  },
+  linkIcon: {
+    fontSize: '0.8em'
   },
   score: {
     margin: '20px 0'
@@ -68,6 +81,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  skLabel: {
+    color: 'rgba(150, 150, 150, 0.8)'
   },
   dragon: {
   },
@@ -178,24 +194,33 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
               codes.length > 0 &&
               <Paper className={classes.dragon}>
                 <div className={classes.info}>
-                  <Link href={`https://dapp.dragonereum.io/marketplace/dragons/${initDragon}`}>
-                    <a className={classes.link} target={'_blank'}><Typography variant={'h6'}>{`#${initDragon}`}</Typography></a>
-                  </Link>
+                  <div className={classes.head}>
+                    <Link href={`https://dapp.dragonereum.io/marketplace/dragons/${initDragon}`}>
+                      <a className={classes.link} target={'_blank'} title={'dapp.dragonereum.io'}>
+                        <Typography variant={'h6'}>{`#${initDragon}`}</Typography>
+                      </a>
+                    </Link>
+                    <LinkIcon className={classes.linkIcon} />
+                  </div>
                   <div className={classes.score}>
-                    <Chip
-                      icon={<CoolnessIcon />}
-                      label={coolnessScore / 100}
-                      className={classes.chip}
-                      color='secondary'
-                      variant='outlined'
-                      />
-                    <Chip
-                      icon={<StrengthIcon />}
-                      label={ds}
-                      className={classes.chip}
-                      color='secondary'
-                      variant='outlined'
-                      />
+                    <Tooltip title={'Coolness score'}>
+                      <Chip
+                        icon={<CoolnessIcon />}
+                        label={coolnessScore / 100}
+                        className={classes.chip}
+                        color='secondary'
+                        variant='outlined'
+                        />
+                    </Tooltip>
+                    <Tooltip title={'Strength score'}>
+                      <Chip
+                        icon={<StrengthIcon />}
+                        label={ds}
+                        className={classes.chip}
+                        color='secondary'
+                        variant='outlined'
+                        />
+                    </Tooltip>
                   </div>
                   <div className={classes.skills}>
                     {
