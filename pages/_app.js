@@ -5,11 +5,10 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import App, {Container} from 'next/app';
 import withRedux from 'next-redux-wrapper';
-import JssProvider from 'react-jss/lib/JssProvider';
 import Helmet from 'react-helmet';
 import {initStore} from '../redux/store';
 import {APP_NAME} from '../lib/constants';
-import {SheetsRegistry} from 'react-jss';
+import {SheetsRegistry} from 'jss';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createGenerateClassName, StylesProvider, ThemeProvider } from '@material-ui/styles';

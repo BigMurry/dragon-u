@@ -1,3 +1,5 @@
+import '../styles/bootstrap';
+
 import Root from '../components/Root';
 import Helmet from 'react-helmet';
 import Error from 'next/error';

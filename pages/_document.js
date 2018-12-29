@@ -49,6 +49,12 @@ MyDocument.getInitialProps = ctx => {
     return WrappedComponent;
   });
 
+  let css;
+  // It might be undefined, e.g. after an error.
+  if (context) {
+    css = context.sheetsRegistry.toString();
+  }
+
   return {
     ...page,
     pageContext: context,
@@ -56,7 +62,7 @@ MyDocument.getInitialProps = ctx => {
       <React.Fragment>
         <style
           id='jss-server-side'
-          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+          dangerouslySetInnerHTML={{ __html: css }}
         />
         {flush() || null}
       </React.Fragment>
