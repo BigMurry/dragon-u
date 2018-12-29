@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
   container: {
     margin: '0 10px'
   },
+  contWrapper: {
+    minHeight: '500px'
+  },
   dialogWrapper: {
     display: 'flex',
     alignItems: 'center',
@@ -35,10 +38,6 @@ const useStyles = makeStyles(theme => ({
     padding: '10px'
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -142,7 +141,9 @@ let Root = ({children, web3, account, setError}) => {
   const isLogin = web3 && account;
   return (
     <div className={classes.container}>
-      {children}
+      <div className={classes.contWrapper}>
+        {children}
+      </div>
       <Msg />
       <div className={classes.footer}>
         <Typography className={classes.by}>{`diaomouren@gmail.com`}</Typography>
