@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     margin: '20px 0'
   },
   chip: {
-    margin: '0 2px 2px 0'
+    margin: '0 5px 4px 0'
   },
   skills: {
     display: 'flex',
