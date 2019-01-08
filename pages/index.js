@@ -160,11 +160,12 @@ async function fetchHealthAndMana(web3, id) {
 let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) => {
   const classes = useStyles();
   const [dragonId, setDragonId] = useState(initDragon);
-  const [health, setHealth] = useState('health...');
-  const [mana, setMana] = useState('mana...');
+  const [health, setHealth] = useState('...');
+  const [mana, setMana] = useState('...');
 
   function handleFetchHealthAndMana(e) {
-    fetchHealthAndMana(web3, initDragon).then(({health, mana, healthPercentage, manaPercentage}) => {
+    fetchHealthAndMana(web3, initDragon)
+    .then(({health, mana, healthPercentage, manaPercentage}) => {
       setHealth(`${health / 100}(${healthPercentage}%)`);
       setMana(`${mana / 100}(${manaPercentage}%)`);
     });
@@ -173,6 +174,7 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
   useEffect(() => {
     if (web3 && initDragon) {
       dispatchGeneFetch(initDragon);
+      handleFetchHealthAndMana();
     }
   }, [refetch, web3]);
 
