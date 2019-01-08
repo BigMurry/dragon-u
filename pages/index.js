@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     margin: '20px 0'
   },
   chip: {
-    marginRight: '15px'
+    margin: '0 2px 2px 0'
   },
   skills: {
     display: 'flex',
@@ -160,8 +160,8 @@ async function fetchHealthAndMana(web3, id) {
 let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) => {
   const classes = useStyles();
   const [dragonId, setDragonId] = useState(initDragon);
-  const [health, setHealth] = useState('fetch health');
-  const [mana, setMana] = useState('fetch mana');
+  const [health, setHealth] = useState('health...');
+  const [mana, setMana] = useState('mana...');
 
   function handleFetchHealthAndMana(e) {
     fetchHealthAndMana(web3, initDragon).then(({health, mana, healthPercentage, manaPercentage}) => {
