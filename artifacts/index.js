@@ -3,6 +3,7 @@ import {abi as DistributionABI} from './abi/DragonDistribution.json';
 import {abi as MainBaseABI} from './abi/DragonMainBase.json';
 import {abi as EventsABI} from './abi/Events.json';
 import {abi as Dragon721ABI} from './abi/Dragon721.json';
+import {abi as GetterABI} from './abi/Getter.json';
 
 const Conf = {
   'Distribution': {
@@ -46,6 +47,15 @@ const Conf = {
       1: {
         addr: '0x960f401aed58668ef476ef02b2a2d43b83c261d8',
         initBlock: 6790234
+      }
+    }
+  },
+  'Getter': {
+    abi: GetterABI,
+    networks: {
+      1: {
+        addr: '0xf88fdb63dc782dae646cd6c74728ca83f56200e4',
+        initBlock: 6790282
       }
     }
   }

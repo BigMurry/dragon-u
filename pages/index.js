@@ -16,6 +16,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CoolnessIcon from 'mdi-material-ui/StarCircle';
 import StrengthIcon from 'mdi-material-ui/Mushroom';
+import HealthIcon from 'mdi-material-ui/HeartMultiple';
+import ManaIcon from 'mdi-material-ui/WeatherHurricane';
 import LinkIcon from 'mdi-material-ui/LinkVariant';
 import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -25,6 +27,7 @@ import Root from '../components/Root';
 import _get from 'lodash/get';
 import _chunk from 'lodash/chunk';
 import {getCoolnessScore, getSkills, getDS} from 'dragon-g';
+import {getContractInstance} from '../artifacts';
 
 const useStyles = makeStyles(theme => ({
   upper: {
@@ -146,9 +149,26 @@ function jumpTo(query) {
 
 const SKILL_NAME = ['Attack', 'Defense', 'Stamina', 'Speed', 'Intelligence'];
 
+async function fetchHealthAndMana(web3, id) {
+  let res = {};
+  if (web3 && id) {
+    const getterContract = getContractInstance(web3, 'Getter');
+    res = await getterContract.methods.getDragonCurrentHealthAndMana(id).call();
+  }
+  return res;
+}
 let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) => {
   const classes = useStyles();
   const [dragonId, setDragonId] = useState(initDragon);
+  const [health, setHealth] = useState('fetch health');
+  const [mana, setMana] = useState('fetch mana');
+
+  function handleFetchHealthAndMana(e) {
+    fetchHealthAndMana(web3, initDragon).then(({health, mana, healthPercentage, manaPercentage}) => {
+      setHealth(`${health / 100}(${healthPercentage}%)`);
+      setMana(`${mana / 100}(${manaPercentage}%)`);
+    });
+  }
 
   useEffect(() => {
     if (web3 && initDragon) {
@@ -217,6 +237,26 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
                         icon={<StrengthIcon />}
                         label={ds}
                         className={classes.chip}
+                        color='secondary'
+                        variant='outlined'
+                        />
+                    </Tooltip>
+                    <Tooltip title={'Health'}>
+                      <Chip
+                        icon={<HealthIcon />}
+                        label={health}
+                        className={classes.chip}
+                        onClick={handleFetchHealthAndMana}
+                        color='secondary'
+                        variant='outlined'
+                        />
+                    </Tooltip>
+                    <Tooltip title={'Mana'}>
+                      <Chip
+                        icon={<ManaIcon />}
+                        label={mana}
+                        className={classes.chip}
+                        onClick={handleFetchHealthAndMana}
                         color='secondary'
                         variant='outlined'
                         />
