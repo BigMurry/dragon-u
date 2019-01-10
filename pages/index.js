@@ -124,6 +124,9 @@ const useStyles = makeStyles(theme => ({
   domi: {
     fontWeight: '600'
   },
+  inbreed: {
+    color: 'rgba(100, 100, 100, 0.7)'
+  },
   rare: {
     color: 'purple'
   },
@@ -293,6 +296,7 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
                                     classes.gene,
                                     {
                                       [classes.domi]: item.isDominant,
+                                      [classes.inbreed]: item.geneVariatyIdx === 0,
                                       [classes.rare]: item.geneVariatyIdx >= 5,
                                       [classes.epic]: item.geneVariatyIdx >= 8
                                     })}>{item.geneVariaty}</Typography>
@@ -300,6 +304,7 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
                                     classes.level,
                                     {
                                       [classes.domi]: item.isDominant,
+                                      [classes.inbreed]: item.geneVariatyIdx === 0,
                                       [classes.rare]: item.geneVariatyIdx >= 5,
                                       [classes.epic]: item.geneVariatyIdx >= 8
                                     })}>{item.geneLevel}</Typography>
