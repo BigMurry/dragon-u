@@ -135,6 +135,14 @@ const useStyles = makeStyles(theme => ({
   },
   active: {
     backgroundColor: 'rgba(220, 200, 200, 0.8)'
+  },
+  avatarCont: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatar: {
+    width: '50%'
   }
 }));
 
@@ -151,6 +159,7 @@ function jumpTo(query) {
 }
 
 const SKILL_NAME = ['Attack', 'Defense', 'Stamina', 'Speed', 'Intelligence'];
+const AVATAR_PRIX = 'https://api.dragonereum.io/images/dragons/large/';
 
 async function fetchHealthAndMana(web3, id) {
   let res = {};
@@ -227,45 +236,48 @@ let Index = ({dispatchGeneFetch, genes = {}, initDragon = '', web3, refetch}) =>
                     </Link>
                     <LinkIcon className={classes.linkIcon} />
                   </div>
-                  <div className={classes.score}>
-                    <Tooltip title={'Coolness score'}>
-                      <Chip
-                        icon={<CoolnessIcon />}
-                        label={coolnessScore / 100}
-                        className={classes.chip}
-                        color='secondary'
-                        variant='outlined'
-                        />
-                    </Tooltip>
-                    <Tooltip title={'Strength score'}>
-                      <Chip
-                        icon={<StrengthIcon />}
-                        label={ds}
-                        className={classes.chip}
-                        color='secondary'
-                        variant='outlined'
-                        />
-                    </Tooltip>
-                    <Tooltip title={'Health'}>
-                      <Chip
-                        icon={<HealthIcon />}
-                        label={health}
-                        className={classes.chip}
-                        onClick={handleFetchHealthAndMana}
-                        color='secondary'
-                        variant='outlined'
-                        />
-                    </Tooltip>
-                    <Tooltip title={'Mana'}>
-                      <Chip
-                        icon={<ManaIcon />}
-                        label={mana}
-                        className={classes.chip}
-                        onClick={handleFetchHealthAndMana}
-                        color='secondary'
-                        variant='outlined'
-                        />
-                    </Tooltip>
+                  <div className={classes.avatarCont}>
+                    <img className={classes.avatar} src={`${AVATAR_PRIX}${initDragon}.png`} />
+                    <div className={classes.score}>
+                      <Tooltip title={'Coolness score'}>
+                        <Chip
+                          icon={<CoolnessIcon />}
+                          label={coolnessScore / 100}
+                          className={classes.chip}
+                          color='secondary'
+                          variant='outlined'
+                          />
+                      </Tooltip>
+                      <Tooltip title={'Strength score'}>
+                        <Chip
+                          icon={<StrengthIcon />}
+                          label={ds}
+                          className={classes.chip}
+                          color='secondary'
+                          variant='outlined'
+                          />
+                      </Tooltip>
+                      <Tooltip title={'Health'}>
+                        <Chip
+                          icon={<HealthIcon />}
+                          label={health}
+                          className={classes.chip}
+                          onClick={handleFetchHealthAndMana}
+                          color='secondary'
+                          variant='outlined'
+                          />
+                      </Tooltip>
+                      <Tooltip title={'Mana'}>
+                        <Chip
+                          icon={<ManaIcon />}
+                          label={mana}
+                          className={classes.chip}
+                          onClick={handleFetchHealthAndMana}
+                          color='secondary'
+                          variant='outlined'
+                          />
+                      </Tooltip>
+                    </div>
                   </div>
                   <div className={classes.skills}>
                     {
