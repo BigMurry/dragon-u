@@ -12,7 +12,9 @@ export const {
   fetchGeneSaga,
   setParsedGeneStore,
   setErrorStore,
-  clearErrorStore
+  clearErrorStore,
+  onPinStore,
+  offPinStore
 } = createActions({
   FETCH_DATA_SAGA: (uri, pathname, key, showLoading, expire, method, body) => ({
     uri, pathname, key, showLoading, expire, method, body
@@ -22,7 +24,9 @@ export const {
   FETCH_GENE_SAGA: (id) => ({id}),
   SET_PARSED_GENE_STORE: (id, parsedGene) => ({id, parsedGene}),
   SET_ERROR_STORE: (errId, msg, variant) => ({errId, msg, variant}),
-  CLEAR_ERROR_STORE: (errId) => ({errId})
+  CLEAR_ERROR_STORE: (errId) => ({errId}),
+  ON_PIN_STORE: (id) => ({id}),
+  OFF_PIN_STORE: (id) => ({id})
 });
 
 const reducer = handleActions({
@@ -45,6 +49,16 @@ const reducer = handleActions({
       return {...state, error: null};
     }
     return state;
+  },
+  ON_PIN_STORE: (state, {payload: {id}}) => {
+    const pinned = _get(state, 'pinnedDragons', []);
+    const pinnedDragons = [...pinned, id];
+    return {...state, pinnedDragons};
+  },
+  OFF_PIN_STORE: (state, {payload: {id}}) => {
+    let pinnedDragons = _get(state, 'pinnedDragons', []);
+    pinnedDragons = pinnedDragons.filter(d => d !== id);
+    return {...state, pinnedDragons};
   }
 }, {});
 
