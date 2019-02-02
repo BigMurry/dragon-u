@@ -192,7 +192,7 @@ let DragonCell = ({genes, id, web3, refetch, onPin, offPin, isPin}) => {
           <div className={classes.info}>
             <div className={classes.head}>
               <div className={classes.id}>
-                <Link href={`https://dapp.dragonereum.io/marketplace/dragons/${id}`}>
+                <Link href={`https://dapp.dragonereum.io/dragons/${id}`}>
                   <a className={classes.link} target={'_blank'} title={'dapp.dragonereum.io'}>
                     <Typography variant={'h6'}>{`#${id}`}</Typography>
                   </a>
