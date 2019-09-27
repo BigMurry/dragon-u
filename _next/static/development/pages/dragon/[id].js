@@ -109672,6 +109672,8 @@ function useDragonId() {
   var _useRouter = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])(),
       query = _useRouter.query;
 
+  console.log(query);
+
   if (query && query.id) {
     return _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1___default()(query.id);
   }
@@ -109709,7 +109711,7 @@ var Index = function Index(_ref) {
   return __jsx(_components_Root__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 78
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -109717,7 +109719,7 @@ var Index = function Index(_ref) {
     className: classes.upper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 79
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -109728,7 +109730,7 @@ var Index = function Index(_ref) {
     lg: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 80
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -109736,7 +109738,7 @@ var Index = function Index(_ref) {
     elevation: 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: this
   }, __jsx(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -109754,7 +109756,7 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 82
     },
     __self: this
   }), __jsx(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -109765,13 +109767,13 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 92
     },
     __self: this
   }, __jsx(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_10___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 93
     },
     __self: this
   }))))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -109779,7 +109781,7 @@ var Index = function Index(_ref) {
     className: classes.dragons,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 98
     },
     __self: this
   }, dragons.map(function (dragon) {
@@ -109794,7 +109796,7 @@ var Index = function Index(_ref) {
       className: classes.cell,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 102
+        lineNumber: 103
       },
       __self: this
     }, __jsx(_components_DragonCell__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -109803,7 +109805,7 @@ var Index = function Index(_ref) {
       isPin: isPin,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 104
       },
       __self: this
     }));
@@ -110299,7 +110301,7 @@ var initStore = function initStore(initialState) {
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!*******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fdragon%2F%5Bid%5D&absolutePagePath=%2FUsers%2Fadmin%2FProjects%2Fdragon-u%2Fpages%2Fdragon%2F%5Bid%5D.js ***!
   \*******************************************************************************************************************************************************/
@@ -110322,5 +110324,5 @@ module.exports = dll_030885a4628ea7c23d48;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js"]]]);
+},[[5,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=[id].js.map
