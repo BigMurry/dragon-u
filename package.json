@@ -40,6 +40,6 @@
     "web3": "^1.0.0-beta.37"
   },
   "devDependencies": {
-    "xhstandard": "^1.0.0"
+    "xhstandard": "^2.0.0"
   }
 }
