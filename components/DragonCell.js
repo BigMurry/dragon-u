@@ -192,11 +192,9 @@ let DragonCell = ({genes, id, web3, refetch, onPin, offPin, isPin}) => {
           <div className={classes.info}>
             <div className={classes.head}>
               <div className={classes.id}>
-                <Link href={`https://dapp.dragonereum.io/dragons/${id}`}>
-                  <a className={classes.link} target={'_blank'} title={'dapp.dragonereum.io'}>
-                    <Typography variant={'h6'}>{`#${id}`}</Typography>
-                  </a>
-                </Link>
+                <a href={`https://dapp.dragonereum.io/dragons/${id}`} className={classes.link} target={'_blank'} title={'dapp.dragonereum.io'}>
+                  <Typography variant={'h6'}>{`#${id}`}</Typography>
+                </a>
                 <LinkIcon className={classes.linkIcon} />
               </div>
               <Fab size={'small'} color={'primary'} aria-label={'Add'} className={classes.margin}

@@ -1,16 +1,26 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import flush from 'styled-jsx/server';
+import { ServerStyleSheets } from '@material-ui/styles';
+import theme from '../styles/theme';
 
 class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <html lang={'en'}>
         <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta charSet='utf-8' />
-          <link rel='shortcut icon' type='image/jpeg' href='/static/assets/favicon.png' />
-          <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' />
+          {/* Use minimum-scale=1 to enable GPU rasterization */}
+          <meta
+            name='viewport'
+            content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no'
+          />
+          {/* PWA primary color */}
+          <meta name='theme-color' content={theme.palette.primary.main} />
+          <link
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
+          />
+          <link rel='shortcut icon' type='image/png' href={`${process.env.BACKEND_URL}/static/assets/favico.png`} />
         </Head>
         <body>
           <Main />
@@ -21,52 +31,49 @@ class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = ctx => {
+MyDocument.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
-  // 1. page.getInitialProps
-  // 2. document.getInitialProps
-  // 3. page.render
-  // 4. document.render
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. document.getInitialProps
+  // 4. app.render
+  // 5. page.render
+  // 6. document.render
   //
   // On the server with error:
-  // 2. document.getInitialProps
+  // 1. document.getInitialProps
+  // 2. app.render
   // 3. page.render
   // 4. document.render
   //
   // On the client
-  // 1. page.getInitialProps
-  // 3. page.render
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. app.render
+  // 4. page.render
 
-  // Get the context to collected side effects.
-  let context;
-  const page = ctx.renderPage(Component => {
-    const WrappedComponent = props => {
-      context = props.pageContext;
-      return <Component {...props} />;
-    };
-    return WrappedComponent;
-  });
+  // Render app and page and get the context of the page with collected side effects.
+  const sheets = new ServerStyleSheets();
+  const originalRenderPage = ctx.renderPage;
 
-  let css;
-  // It might be undefined, e.g. after an error.
-  if (context) {
-    css = context.sheetsRegistry.toString();
-  }
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: App => props => sheets.collect(<App {...props} />)
+    });
+
+  const initialProps = await Document.getInitialProps(ctx);
 
   return {
-    ...page,
-    pageContext: context,
+    ...initialProps,
+    // Styles fragment is rendered after the app and page rendering finish.
     styles: (
       <React.Fragment>
-        <style
-          id='jss-server-side'
-          dangerouslySetInnerHTML={{ __html: css }}
-        />
-        {flush() || null}
+        {initialProps.styles}
+        {sheets.getStyleElement()}
       </React.Fragment>
-      )
+    )
   };
 };
 

@@ -72,6 +72,9 @@ function * fetchGeneSaga(action) {
 }
 
 export default function * rootSaga() {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const walletChann = heartbeat(1000); // 1s heartbeat
   yield all([
     takeEvery(walletChann, updateAccount),

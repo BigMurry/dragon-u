@@ -1,5 +1,3 @@
-import '../styles/bootstrap';
-
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { bindActionCreators } from 'redux';
@@ -42,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function jumpTo(query) {
-  Router.push(`/?q=${query}&_r=${new Date().getTime()}`);
+  Router.push(`${process.env.BACKEND_URL}/?q=${query}&_r=${new Date().getTime()}`);
 }
 
 let Index = ({
@@ -107,7 +105,7 @@ function parseQuery(query) {
   return parseInt(query, 10);
 }
 
-Index.getInitialProps = async ({query = {}}) => {
+Index.getInitialProps = ({query = {}}) => {
   const {q, _r} = query;
   const initDragon = parseQuery(q);
   if (initDragon > 0) {

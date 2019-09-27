@@ -1,5 +1,3 @@
-import '../styles/bootstrap';
-
 import Root from '../components/Root';
 import Helmet from 'react-helmet';
 import Error from 'next/error';
@@ -19,7 +17,7 @@ let ErrorPage = ({classes, statusCode}) => {
   );
 };
 
-ErrorPage.getInitialProps = async ({res, err}) => {
+ErrorPage.getInitialProps = ({res, err}) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : null;
   return { statusCode };
 };
