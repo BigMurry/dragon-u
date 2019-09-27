@@ -9,9 +9,9 @@ webpackHotUpdate("static/development/pages/index.js",{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _material_ui_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/styles */ "./node_modules/@material-ui/styles/esm/index.js");
@@ -74,7 +74,22 @@ var useStyles = Object(_material_ui_styles__WEBPACK_IMPORTED_MODULE_3__["makeSty
 });
 
 function jumpTo(query) {
-  next_router__WEBPACK_IMPORTED_MODULE_6___default.a.push("".concat("", "/?q=").concat(query, "&_r=").concat(new Date().getTime()));
+  var url = "".concat("", "/dragon/[id]");
+  var as = "".concat("", "/dragon/").concat(query);
+  next_router__WEBPACK_IMPORTED_MODULE_6___default.a.push(url, as, {
+    shallow: true
+  });
+}
+
+function useDragonId() {
+  var _useRouter = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])(),
+      query = _useRouter.query;
+
+  if (query && query.q) {
+    return _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1___default()(query.q);
+  }
+
+  return '';
 }
 
 var Index = function Index(_ref) {
@@ -83,28 +98,31 @@ var Index = function Index(_ref) {
       pinnedDragons = _ref$pinnedDragons === void 0 ? [] : _ref$pinnedDragons,
       _ref$genes = _ref.genes,
       genes = _ref$genes === void 0 ? {} : _ref$genes,
-      _ref$initDragon = _ref.initDragon,
-      initDragon = _ref$initDragon === void 0 ? '' : _ref$initDragon,
       web3 = _ref.web3,
       refetch = _ref.refetch;
   var classes = useStyles();
+  var initDragon = useDragonId();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(initDragon),
       dragonId = _useState[0],
       setDragonId = _useState[1];
 
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(new Date().getTime()),
+      _r = _useState2[0]; // console.log(`${_r}#${initDragon}`);
+
+
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     if (web3 && initDragon) {
       dispatchGeneFetch(initDragon);
     }
-  }, [refetch, web3]);
+  }, [_r, web3, initDragon]);
 
-  var dragons = lodash_uniq__WEBPACK_IMPORTED_MODULE_12___default()([].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(pinnedDragons), [initDragon]));
+  var dragons = lodash_uniq__WEBPACK_IMPORTED_MODULE_12___default()([].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(pinnedDragons), [initDragon]));
 
   return __jsx(_components_Root__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 77
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -112,7 +130,7 @@ var Index = function Index(_ref) {
     className: classes.upper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 78
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -123,7 +141,7 @@ var Index = function Index(_ref) {
     lg: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 79
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -131,7 +149,7 @@ var Index = function Index(_ref) {
     elevation: 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 80
     },
     __self: this
   }, __jsx(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -149,7 +167,7 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 81
     },
     __self: this
   }), __jsx(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -160,13 +178,13 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 91
     },
     __self: this
   }, __jsx(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_10___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 92
     },
     __self: this
   }))))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -174,7 +192,7 @@ var Index = function Index(_ref) {
     className: classes.dragons,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 97
     },
     __self: this
   }, dragons.map(function (dragon) {
@@ -189,7 +207,7 @@ var Index = function Index(_ref) {
       className: classes.cell,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 102
       },
       __self: this
     }, __jsx(_components_DragonCell__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -198,40 +216,17 @@ var Index = function Index(_ref) {
       isPin: isPin,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 103
       },
       __self: this
     }));
   })));
 };
 
-function parseQuery(query) {
-  return _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(query, 10);
-}
-
-Index.getInitialProps = function (_ref2) {
-  var _ref2$query = _ref2.query,
-      query = _ref2$query === void 0 ? {} : _ref2$query;
-  var q = query.q,
-      _r = query._r;
-  var initDragon = parseQuery(q);
-
-  if (initDragon > 0) {
-    return {
-      initDragon: initDragon,
-      refetch: _r
-    };
-  }
-
-  return {
-    refetch: _r
-  };
-};
-
-Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(function (_ref3) {
-  var genes = _ref3.genes,
-      web3 = _ref3.web3,
-      pinnedDragons = _ref3.pinnedDragons;
+Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(function (_ref2) {
+  var genes = _ref2.genes,
+      web3 = _ref2.web3,
+      pinnedDragons = _ref2.pinnedDragons;
   return {
     genes: genes,
     web3: web3,
@@ -247,4 +242,4 @@ Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(function (_r
 /***/ })
 
 })
-//# sourceMappingURL=index.js.d35e0168d667b6014ecf.hot-update.js.map
+//# sourceMappingURL=index.js.e7e0d52a0cb39f91e3df.hot-update.js.map
