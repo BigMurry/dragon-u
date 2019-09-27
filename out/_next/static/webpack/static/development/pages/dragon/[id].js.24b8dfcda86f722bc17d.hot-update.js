@@ -1,9 +1,9 @@
-webpackHotUpdate("static/development/pages/index.js",{
+webpackHotUpdate("static/development/pages/dragon/[id].js",{
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./pages/dragon/[id].js":
+/*!******************************!*\
+  !*** ./pages/dragon/[id].js ***!
+  \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -27,12 +27,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
 /* harmony import */ var lodash_uniq__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lodash/uniq */ "./node_modules/lodash/uniq.js");
 /* harmony import */ var lodash_uniq__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(lodash_uniq__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-/* harmony import */ var _components_Root__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Root */ "./components/Root.js");
-/* harmony import */ var _components_DragonCell__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/DragonCell */ "./components/DragonCell.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../redux/store */ "./redux/store.js");
+/* harmony import */ var _components_Root__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/Root */ "./components/Root.js");
+/* harmony import */ var _components_DragonCell__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/DragonCell */ "./components/DragonCell.js");
 
 
-var _jsxFileName = "/Users/admin/Projects/dragon-u/pages/index.js";
+var _jsxFileName = "/Users/admin/Projects/dragon-u/pages/dragon/[id].js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
@@ -85,8 +85,10 @@ function useDragonId() {
   var _useRouter = Object(next_router__WEBPACK_IMPORTED_MODULE_6__["useRouter"])(),
       query = _useRouter.query;
 
-  if (query && query.q) {
-    return _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1___default()(query.q);
+  console.log(query);
+
+  if (query && query.id) {
+    return _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_1___default()(query.id);
   }
 
   return '';
@@ -122,7 +124,7 @@ var Index = function Index(_ref) {
   return __jsx(_components_Root__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 78
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -130,7 +132,7 @@ var Index = function Index(_ref) {
     className: classes.upper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 79
     },
     __self: this
   }, __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -141,7 +143,7 @@ var Index = function Index(_ref) {
     lg: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 80
     },
     __self: this
   }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -149,7 +151,7 @@ var Index = function Index(_ref) {
     elevation: 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 81
     },
     __self: this
   }, __jsx(_material_ui_core_InputBase__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -167,7 +169,7 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 82
     },
     __self: this
   }), __jsx(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -178,13 +180,13 @@ var Index = function Index(_ref) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 92
     },
     __self: this
   }, __jsx(_material_ui_icons_Search__WEBPACK_IMPORTED_MODULE_10___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 93
     },
     __self: this
   }))))), __jsx(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -192,7 +194,7 @@ var Index = function Index(_ref) {
     className: classes.dragons,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 98
     },
     __self: this
   }, dragons.map(function (dragon) {
@@ -207,7 +209,7 @@ var Index = function Index(_ref) {
       className: classes.cell,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 102
+        lineNumber: 103
       },
       __self: this
     }, __jsx(_components_DragonCell__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -216,7 +218,7 @@ var Index = function Index(_ref) {
       isPin: isPin,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 104
       },
       __self: this
     }));
@@ -242,4 +244,4 @@ Index = Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(function (_r
 /***/ })
 
 })
-//# sourceMappingURL=index.js.e7e0d52a0cb39f91e3df.hot-update.js.map
+//# sourceMappingURL=[id].js.24b8dfcda86f722bc17d.hot-update.js.map

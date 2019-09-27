@@ -1,9 +1,12 @@
 import Root from '../components/Root';
 import Helmet from 'react-helmet';
 import Error from 'next/error';
+import {useRouter} from 'next/router';
 const {APP_NAME} = require('../lib/constants');
 
 let ErrorPage = ({classes, statusCode}) => {
+  const router = useRouter();
+  console.log(router);
   return (
     <Root>
       <div>

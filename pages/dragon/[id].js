@@ -47,6 +47,7 @@ function jumpTo(query) {
 
 function useDragonId() {
   const {query} = useRouter();
+  console.log(query);
   if (query && query.id) {
     return parseInt(query.id);
   }
