@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
-import Router from 'next/router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Router, {useRouter} from 'next/router';
 
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,7 +10,11 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
+import _uniq from 'lodash/uniq';
+
+import { fetchGeneSaga } from '../redux/store';
 import Root from '../components/Root';
+import DragonCell from '../components/DragonCell';
 
 const useStyles = makeStyles(theme => ({
   upper: {
@@ -34,14 +40,38 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function jumpTo(query) {
-  const url = `${process.env.BACKEND_URL}/dragon/[id]`;
-  const as = `${process.env.BACKEND_URL}/dragon/${query}`;
-  Router.push(url, as, {shallow: true});
+  const url = `${process.env.BACKEND_URL}/?id=${query}`;
+  // const as = `${process.env.BACKEND_URL}/${query}`;
+  Router.push(url, url, {shallow: true});
 }
 
-let Index = () => {
+function useDragonId() {
+  const {query} = useRouter();
+  if (query && query.id) {
+    return parseInt(query.id);
+  }
+  return '';
+}
+
+let Index = ({
+  dispatchGeneFetch,
+  pinnedDragons = [],
+  genes = {},
+  web3,
+  refetch
+}) => {
   const classes = useStyles();
-  const [dragonId, setDragonId] = useState('');
+  const initDragon = useDragonId();
+  const [dragonId, setDragonId] = useState(initDragon);
+  const [_r] = useState(new Date().getTime());
+  // console.log(`${_r}#${initDragon}`);
+  useEffect(() => {
+    if (web3 && initDragon) {
+      dispatchGeneFetch(initDragon);
+    }
+  }, [_r, web3, initDragon]);
+
+  const dragons = _uniq([...pinnedDragons, initDragon]);
 
   return (
     <Root>
@@ -64,8 +94,29 @@ let Index = () => {
           </Paper>
         </Grid>
       </Grid>
+      <Grid container className={classes.dragons}>
+        {
+          dragons.map(dragon => {
+            const isPin = !!~pinnedDragons.indexOf(dragon);
+            return (
+              <Grid item xs={12} sm={12} md={6} lg={4} key={dragon} className={classes.cell}>
+                <DragonCell genes={genes} id={dragon}
+                  isPin={isPin}
+                  />
+              </Grid>
+            );
+          })
+        }
+      </Grid>
     </Root>
   );
 };
+
+Index = connect(
+  ({genes, web3, pinnedDragons}) => ({genes, web3, pinnedDragons}),
+  (dispatch) => ({
+    dispatchGeneFetch: bindActionCreators(fetchGeneSaga, dispatch)
+  })
+)(Index);
 
 export default Index;
