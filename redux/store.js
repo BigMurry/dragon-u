@@ -6,8 +6,6 @@ import rootSaga from './sagas';
 
 export const {
   fetchDataSaga,
-  setWeb3Store,
-  setAccountStore,
   fetchGeneSaga,
   setParsedGeneStore,
   setErrorStore,
@@ -18,9 +16,7 @@ export const {
   FETCH_DATA_SAGA: (uri, pathname, key, showLoading, expire, method, body) => ({
     uri, pathname, key, showLoading, expire, method, body
   }),
-  SET_WEB3_STORE: (web3) => ({web3}),
-  SET_ACCOUNT_STORE: (account) => ({account}),
-  FETCH_GENE_SAGA: (id) => ({id}),
+  FETCH_GENE_SAGA: (provider, id) => ({provider, id}),
   SET_PARSED_GENE_STORE: (id, parsedGene) => ({id, parsedGene}),
   SET_ERROR_STORE: (errId, msg, variant) => ({errId, msg, variant}),
   CLEAR_ERROR_STORE: (errId) => ({errId}),
@@ -29,12 +25,6 @@ export const {
 });
 
 const reducer = handleActions({
-  SET_WEB3_STORE: (state, {payload: {web3}}) => {
-    return {...state, web3};
-  },
-  SET_ACCOUNT_STORE: (state, {payload: {account}}) => {
-    return {...state, account};
-  },
   SET_PARSED_GENE_STORE: (state, {payload: {id, parsedGene}}) => {
     const genes = state.genes;
     return {...state, genes: {...genes, [id]: parsedGene}};

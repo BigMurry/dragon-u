@@ -15,6 +15,7 @@ import _uniq from 'lodash/uniq';
 import { fetchGeneSaga } from '../redux/store';
 import Root from '../components/Root';
 import DragonCell from '../components/DragonCell';
+import {useWeb3Provider} from '../components/Web3Provider';
 
 const useStyles = makeStyles(theme => ({
   upper: {
@@ -56,20 +57,19 @@ function useDragonId() {
 let Index = ({
   dispatchGeneFetch,
   pinnedDragons = [],
-  genes = {},
-  web3,
-  refetch
+  genes = {}
 }) => {
   const classes = useStyles();
   const initDragon = useDragonId();
+  const provider = useWeb3Provider();
   const [dragonId, setDragonId] = useState(initDragon);
   const [_r] = useState(new Date().getTime());
   // console.log(`${_r}#${initDragon}`);
   useEffect(() => {
-    if (web3 && initDragon) {
-      dispatchGeneFetch(initDragon);
+    if (provider && initDragon) {
+      dispatchGeneFetch(provider, initDragon);
     }
-  }, [_r, web3, initDragon]);
+  }, [_r, provider, initDragon]);
 
   const dragons = _uniq([...pinnedDragons, initDragon]);
 
@@ -113,7 +113,7 @@ let Index = ({
 };
 
 Index = connect(
-  ({genes, web3, pinnedDragons}) => ({genes, web3, pinnedDragons}),
+  ({genes, pinnedDragons}) => ({genes, pinnedDragons}),
   (dispatch) => ({
     dispatchGeneFetch: bindActionCreators(fetchGeneSaga, dispatch)
   })

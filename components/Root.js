@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { connect } from 'react-redux';
+import * as ethers from 'ethers';
 import { bindActionCreators } from 'redux';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -16,6 +17,7 @@ import QRCode from 'qrcode.react';
 import HeartIcon from 'mdi-material-ui/Heart';
 
 import { clearErrorStore, setErrorStore } from '../redux/store';
+import {useWeb3Provider} from './Web3Provider';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -95,13 +97,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DONATOR_ACCOUNT = '0xCC6a7D642B66aFeed091B87b9175c61F8993cb3b';
-function sendEther(web3, account, cb) {
-  if (web3 && web3.eth && account) {
-    web3.eth.sendTransaction({
-      from: account,
+function sendEther(signer, cb) {
+  if (signer) {
+    signer.sendTransaction({
       to: DONATOR_ACCOUNT,
-      value: '6000000000000000' // 0.006 ether
-    }, cb);
+      value: ethers.utils.parseEther('0.006') // 0.006 ether
+    }).then(cb);
   }
 }
 
@@ -122,13 +123,14 @@ Msg = connect(
   (dispatch) => ({clearError: bindActionCreators(clearErrorStore, dispatch)})
 )(Msg);
 
-let Root = ({children, web3, account, setError}) => {
+let Root = ({children, setError}) => {
   const classes = useStyles();
   const [qrcode, showQrcode] = useState(false);
   const [thankDialog, showThankDialog] = useState(false);
   const [copied, setCopied] = useState(false);
+  const provider = useWeb3Provider();
 
-  if (!web3) {
+  if (!provider) {
     return (
       <div className={classes.dialogWrapper}>
         <Paper className={classes.dialog}>
@@ -138,7 +140,8 @@ let Root = ({children, web3, account, setError}) => {
       </div>
     );
   }
-  const isLogin = web3 && account;
+  const signer = provider.getSigner();
+  const isLogin = !!signer;
   return (
     <div className={classes.container}>
       <div className={classes.contWrapper}>
@@ -154,7 +157,7 @@ let Root = ({children, web3, account, setError}) => {
             className={classes.chip}
             onClick={e => {
               if (isLogin) {
-                sendEther(web3, account, (e) => {
+                sendEther(signer, (e) => {
                   if (e) {
                     console.log(e);
                     setError(new Date().getTime(), e.message, 'error');

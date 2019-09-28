@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import {initStore} from '../redux/store';
-import {APP_NAME} from '../lib/constants';
+import {APP_NAME, ETH_MAIN_NODE} from '../lib/constants';
+import {Web3Provider} from '../components/Web3Provider';
 
 class MyApp extends App {
   componentDidMount() {
@@ -31,7 +32,9 @@ class MyApp extends App {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Provider store={store}>
-            <Component {...pageProps} />
+            <Web3Provider networks={[1, 3, 5]} backupJsonRpcUrl={ETH_MAIN_NODE} ms={10000}>
+              <Component {...pageProps} />
+            </Web3Provider>
           </Provider>
         </ThemeProvider>
       </React.Fragment>
