@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Router, {useRouter} from 'next/router';
+// import Router, {useRouter} from 'next/router';
 
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
@@ -40,38 +40,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function jumpTo(query) {
-  const url = `${process.env.BACKEND_URL}/?id=${query}`;
-  // const as = `${process.env.BACKEND_URL}/${query}`;
-  Router.push(url, url, {shallow: true});
-}
-
-function useDragonId() {
-  const {query} = useRouter();
-  if (query && query.id) {
-    return parseInt(query.id);
-  }
-  return '';
-}
-
 let Index = ({
   dispatchGeneFetch,
   pinnedDragons = [],
   genes = {}
 }) => {
   const classes = useStyles();
-  const initDragon = useDragonId();
   const provider = useWeb3Provider();
-  const [dragonId, setDragonId] = useState(initDragon);
-  const [_r] = useState(new Date().getTime());
+  const [showDragonId, setShowDragonId] = useState(1);
+  const [searchBoxId, setSearchBoxId] = useState(showDragonId);
   // console.log(`${_r}#${initDragon}`);
   useEffect(() => {
-    if (provider && initDragon) {
-      dispatchGeneFetch(provider, initDragon);
+    if (provider && showDragonId) {
+      dispatchGeneFetch(provider, showDragonId);
     }
-  }, [_r, provider, initDragon]);
+  }, [provider, showDragonId]);
 
-  const dragons = _uniq([...pinnedDragons, initDragon]);
+  const dragons = _uniq([...pinnedDragons, showDragonId]);
 
   return (
     <Root>
@@ -79,16 +64,16 @@ let Index = ({
         <Grid item xs={12} sm={12} md={6} lg={4} >
           <Paper className={classes.inputCont} elevation={1}>
             <InputBase className={classes.input} placeholder={'dragon id #'}
-              value={dragonId}
+              value={searchBoxId}
               spellCheck={false}
-              onChange={e => setDragonId(e.target.value)}
+              onChange={e => setSearchBoxId(e.target.value)}
               onKeyDown={event => {
                 if (event.key === 'Enter') {
-                  jumpTo(dragonId);
+                  setShowDragonId(searchBoxId);
                 }
               }}
               />
-            <IconButton className={classes.iconButton} aria-label={'Search'} onClick={e => jumpTo(dragonId)}>
+            <IconButton className={classes.iconButton} aria-label={'Search'} onClick={e => setShowDragonId(searchBoxId)}>
               <SearchIcon />
             </IconButton>
           </Paper>
