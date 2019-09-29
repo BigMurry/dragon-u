@@ -15,7 +15,7 @@ import _uniq from 'lodash/uniq';
 import { fetchGeneSaga } from '../redux/store';
 import Root from '../components/Root';
 import DragonCell from '../components/DragonCell';
-import {useWeb3Provider} from '../components/Web3Provider';
+import {useEtherProvider} from 'use-ether-provider';
 
 const useStyles = makeStyles(theme => ({
   upper: {
@@ -46,7 +46,7 @@ let Index = ({
   genes = {}
 }) => {
   const classes = useStyles();
-  const provider = useWeb3Provider();
+  const provider = useEtherProvider();
   const [showDragonId, setShowDragonId] = useState(1);
   const [searchBoxId, setSearchBoxId] = useState(showDragonId);
   // console.log(`${_r}#${initDragon}`);

@@ -22,7 +22,7 @@ import _chunk from 'lodash/chunk';
 import {getCoolnessScore, getSkills, getDS} from 'dragon-g';
 import {getContractInstance} from '../artifacts';
 import {onPinStore, offPinStore} from '../redux/store';
-import {useWeb3Provider} from './Web3Provider';
+import {useEtherProvider} from 'use-ether-provider';
 
 let useStyles = makeStyles(theme => ({
   container: {},
@@ -158,7 +158,7 @@ let DragonCell = ({genes, id, refetch, onPin, offPin, isPin}) => {
   const classes = useStyles();
   const [health, setHealth] = useState('...');
   const [mana, setMana] = useState('...');
-  const provider = useWeb3Provider();
+  const provider = useEtherProvider();
 
   const codes = _chunk(_get(genes, [id, 'allCodes'], []), 4);
   const parsed = _get(genes, id);
