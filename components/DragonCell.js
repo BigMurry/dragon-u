@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import cn from 'classnames';
-import Link from 'next/link';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -23,6 +22,7 @@ import _chunk from 'lodash/chunk';
 import {getCoolnessScore, getSkills, getDS} from 'dragon-g';
 import {getContractInstance} from '../artifacts';
 import {onPinStore, offPinStore} from '../redux/store';
+import {useWeb3Provider} from './Web3Provider';
 
 let useStyles = makeStyles(theme => ({
   container: {},
@@ -137,11 +137,11 @@ let useStyles = makeStyles(theme => ({
 const SKILL_NAME = ['Attack', 'Defense', 'Stamina', 'Speed', 'Intelligence'];
 const AVATAR_PRIX = 'https://api.dragonereum.io/images/dragons/large/';
 
-async function fetchHealthAndMana(web3, id) {
+async function fetchHealthAndMana(provider, id) {
   let res = {};
-  if (web3 && id) {
-    const getterContract = getContractInstance(web3, 'Getter');
-    res = await getterContract.methods.getDragonCurrentHealthAndMana(id).call();
+  if (provider && id) {
+    const getterContract = getContractInstance(provider, 'Getter');
+    res = await getterContract.getDragonCurrentHealthAndMana(id);
   }
   return res;
 }
@@ -154,10 +154,11 @@ function dominantSlot(genes = []) {
   return 0;
 }
 
-let DragonCell = ({genes, id, web3, refetch, onPin, offPin, isPin}) => {
+let DragonCell = ({genes, id, refetch, onPin, offPin, isPin}) => {
   const classes = useStyles();
   const [health, setHealth] = useState('...');
   const [mana, setMana] = useState('...');
+  const provider = useWeb3Provider();
 
   const codes = _chunk(_get(genes, [id, 'allCodes'], []), 4);
   const parsed = _get(genes, id);
@@ -171,7 +172,7 @@ let DragonCell = ({genes, id, web3, refetch, onPin, offPin, isPin}) => {
   }
 
   function handleFetchHealthAndMana(e) {
-    fetchHealthAndMana(web3, id)
+    fetchHealthAndMana(provider, id)
     .then(({health, mana, healthPercentage, manaPercentage}) => {
       setHealth(`${health / 100}(${healthPercentage}%)`);
       setMana(`${mana / 100}(${manaPercentage}%)`);
@@ -179,10 +180,10 @@ let DragonCell = ({genes, id, web3, refetch, onPin, offPin, isPin}) => {
   }
 
   useEffect(() => {
-    if (web3) {
+    if (provider) {
       handleFetchHealthAndMana();
     }
-  }, [refetch, web3]);
+  }, [refetch, provider]);
 
   return (
     <div className={classes.cont}>
