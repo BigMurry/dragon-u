@@ -28397,10 +28397,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/use-ether-provider/lib/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/use-ether-provider/lib/index.js ***!
-  \******************************************************/
+/***/ "./node_modules/use-ether-provider/dist/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/use-ether-provider/dist/index.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30570,7 +30570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_redux_saga__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! next-redux-saga */ "./node_modules/next-redux-saga/dist/next-redux-saga.es.js");
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
 /* harmony import */ var _lib_constants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../lib/constants */ "./lib/constants.js");
-/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/lib/index.js");
+/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/dist/index.js");
 /* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(use_ether_provider__WEBPACK_IMPORTED_MODULE_17__);
 
 

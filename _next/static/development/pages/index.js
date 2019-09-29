@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _artifacts__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../artifacts */ "./artifacts/index.js");
 /* harmony import */ var _artifacts__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(_artifacts__WEBPACK_IMPORTED_MODULE_24__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/lib/index.js");
+/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/dist/index.js");
 /* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(use_ether_provider__WEBPACK_IMPORTED_MODULE_26__);
 
 
@@ -733,7 +733,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! mdi-material-ui/Heart */ "./node_modules/mdi-material-ui/Heart.js");
 /* harmony import */ var mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
-/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/lib/index.js");
+/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/dist/index.js");
 /* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(use_ether_provider__WEBPACK_IMPORTED_MODULE_18__);
 
 var _jsxFileName = "/Users/admin/Projects/dragon-u/components/Root.js";
@@ -43196,10 +43196,10 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "./node_modules/use-ether-provider/lib/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/use-ether-provider/lib/index.js ***!
-  \******************************************************/
+/***/ "./node_modules/use-ether-provider/dist/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/use-ether-provider/dist/index.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45333,7 +45333,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../redux/store */ "./redux/store.js");
 /* harmony import */ var _components_Root__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Root */ "./components/Root.js");
 /* harmony import */ var _components_DragonCell__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/DragonCell */ "./components/DragonCell.js");
-/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/lib/index.js");
+/* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! use-ether-provider */ "./node_modules/use-ether-provider/dist/index.js");
 /* harmony import */ var use_ether_provider__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(use_ether_provider__WEBPACK_IMPORTED_MODULE_14__);
 
 var _jsxFileName = "/Users/admin/Projects/dragon-u/pages/index.js";
