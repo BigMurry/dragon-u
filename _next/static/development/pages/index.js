@@ -903,85 +903,86 @@ var Root = function Root(_ref3) {
       setCopied = _useState3[1];
 
   var provider = Object(_Web3Provider__WEBPACK_IMPORTED_MODULE_18__["useWeb3Provider"])();
+  var account = Object(_Web3Provider__WEBPACK_IMPORTED_MODULE_18__["useAccount"])(provider);
 
   if (!provider) {
     return __jsx("div", {
       className: classes.dialogWrapper,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 136
       },
       __self: this
     }, __jsx(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_7__["default"], {
       className: classes.dialog,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 136
+        lineNumber: 137
       },
       __self: this
     }, __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 137
+        lineNumber: 138
       },
       __self: this
     }, "Waiting for web3 connecting..."), __jsx(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_6__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 139
       },
       __self: this
     })));
   }
 
   var signer = provider.getSigner();
-  var isLogin = !!signer;
+  var isLogin = !!account;
   return __jsx("div", {
     className: classes.container,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 147
     },
     __self: this
   }, __jsx("div", {
     className: classes.contWrapper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 148
     },
     __self: this
   }, children), __jsx(Msg, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 151
     },
     __self: this
   }), __jsx("div", {
     className: classes.footer,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 152
     },
     __self: this
   }, __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
     className: classes.by,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 152
+      lineNumber: 153
     },
     __self: this
   }, "diaomouren@gmail.com"), __jsx("div", {
     className: classes.icons,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 154
     },
     __self: this
   }, __jsx(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_10__["default"], {
     icon: __jsx(mdi_material_ui_HeartCircle__WEBPACK_IMPORTED_MODULE_11___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 155
+        lineNumber: 156
       },
       __self: this
     }),
@@ -1005,14 +1006,14 @@ var Root = function Root(_ref3) {
     variant: "outlined",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 154
+      lineNumber: 155
     },
     __self: this
   }), __jsx(_material_ui_core_Chip__WEBPACK_IMPORTED_MODULE_10__["default"], {
     icon: __jsx(mdi_material_ui_GithubCircle__WEBPACK_IMPORTED_MODULE_12___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 176
+        lineNumber: 177
       },
       __self: this
     }),
@@ -1026,7 +1027,7 @@ var Root = function Root(_ref3) {
     variant: "outlined",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 175
+      lineNumber: 176
     },
     __self: this
   })), __jsx(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_13__["default"], {
@@ -1036,21 +1037,21 @@ var Root = function Root(_ref3) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 187
+      lineNumber: 188
     },
     __self: this
   }, __jsx("div", {
     className: classes.donateTitle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 188
+      lineNumber: 189
     },
     __self: this
   }, __jsx(mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16___default.a, {
     className: classes.donateIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 189
+      lineNumber: 190
     },
     __self: this
   }), __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1058,14 +1059,14 @@ var Root = function Root(_ref3) {
     variant: 'h6',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 190
+      lineNumber: 191
     },
     __self: this
   }, "Thank you!"), __jsx(mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16___default.a, {
     className: classes.donateIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 191
+      lineNumber: 192
     },
     __self: this
   }))), __jsx(_material_ui_core_Dialog__WEBPACK_IMPORTED_MODULE_13__["default"], {
@@ -1076,21 +1077,21 @@ var Root = function Root(_ref3) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 194
+      lineNumber: 195
     },
     __self: this
   }, __jsx("div", {
     className: classes.donateTitle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 198
+      lineNumber: 199
     },
     __self: this
   }, __jsx(mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16___default.a, {
     className: classes.donateIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 199
+      lineNumber: 200
     },
     __self: this
   }), __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1098,28 +1099,28 @@ var Root = function Root(_ref3) {
     variant: 'h6',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 200
+      lineNumber: 201
     },
     __self: this
   }, "Thanks a lot"), __jsx(mdi_material_ui_Heart__WEBPACK_IMPORTED_MODULE_16___default.a, {
     className: classes.donateIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201
+      lineNumber: 202
     },
     __self: this
   })), __jsx("div", {
     className: classes.donate,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 203
+      lineNumber: 204
     },
     __self: this
   }, __jsx("div", {
     className: classes.addressWrapper,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 204
+      lineNumber: 205
     },
     __self: this
   }, __jsx(react_copy_to_clipboard__WEBPACK_IMPORTED_MODULE_14__["CopyToClipboard"], {
@@ -1129,7 +1130,7 @@ var Root = function Root(_ref3) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 205
+      lineNumber: 206
     },
     __self: this
   }, __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1137,7 +1138,7 @@ var Root = function Root(_ref3) {
     variant: 'caption',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 206
+      lineNumber: 207
     },
     __self: this
   }, DONATOR_ACCOUNT)), copied && __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -1145,14 +1146,14 @@ var Root = function Root(_ref3) {
     className: classes.notify,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 209
+      lineNumber: 210
     },
     __self: this
   }, 'copied!')), __jsx(qrcode_react__WEBPACK_IMPORTED_MODULE_15___default.a, {
     value: DONATOR_ACCOUNT,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 212
+      lineNumber: 213
     },
     __self: this
   })))));
@@ -1176,13 +1177,13 @@ var RootWrapper = function RootWrapper(props) {
     maxSnack: 4,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 227
+      lineNumber: 228
     },
     __self: this
   }, __jsx(Root, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 228
+      lineNumber: 229
     },
     __self: this
   })));
@@ -1196,7 +1197,7 @@ var RootWrapper = function RootWrapper(props) {
 /*!************************************!*\
   !*** ./components/Web3Provider.js ***!
   \************************************/
-/*! exports provided: tryEnableWeb3, Web3Provider, useWeb3Provider */
+/*! exports provided: tryEnableWeb3, Web3Provider, useWeb3Provider, useAccount */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1204,6 +1205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryEnableWeb3", function() { return tryEnableWeb3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Web3Provider", function() { return Web3Provider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useWeb3Provider", function() { return useWeb3Provider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useAccount", function() { return useAccount; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
@@ -1575,6 +1577,23 @@ var Web3Provider = function Web3Provider(_ref2) {
 };
 function useWeb3Provider() {
   return react__WEBPACK_IMPORTED_MODULE_4___default.a.useContext(Web3Context);
+}
+function useAccount(provider) {
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(''),
+      account = _useState2[0],
+      setAccount = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
+    if (provider && provider.getSigner) {
+      var signer = provider.getSigner();
+      signer.getAddress().then(function (add) {
+        if (add && add !== '0x0000000000000000000000000000000000000000') {
+          setAccount(add);
+        }
+      })["catch"](function (e) {});
+    }
+  }, [provider]);
+  return account;
 }
 
 /***/ }),
