@@ -88,7 +88,7 @@ module.exports = {
 /*!************************************!*\
   !*** ./components/Web3Provider.js ***!
   \************************************/
-/*! exports provided: tryEnableWeb3, Web3Provider, useWeb3Provider */
+/*! exports provided: tryEnableWeb3, Web3Provider, useWeb3Provider, useAccount */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -96,6 +96,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryEnableWeb3", function() { return tryEnableWeb3; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Web3Provider", function() { return Web3Provider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useWeb3Provider", function() { return useWeb3Provider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useAccount", function() { return useAccount; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
@@ -467,6 +468,23 @@ var Web3Provider = function Web3Provider(_ref2) {
 };
 function useWeb3Provider() {
   return react__WEBPACK_IMPORTED_MODULE_4___default.a.useContext(Web3Context);
+}
+function useAccount(provider) {
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(''),
+      account = _useState2[0],
+      setAccount = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
+    if (provider && provider.getSigner) {
+      var signer = provider.getSigner();
+      signer.getAddress().then(function (add) {
+        if (add && add !== '0x0000000000000000000000000000000000000000') {
+          setAccount(add);
+        }
+      })["catch"](function (e) {});
+    }
+  }, [provider]);
+  return account;
 }
 
 /***/ }),

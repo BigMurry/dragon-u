@@ -160,3 +160,18 @@ export const Web3Provider = function({networks, backupJsonRpcUrl, ms, children})
 export function useWeb3Provider() {
   return React.useContext(Web3Context);
 }
+
+export function useAccount(provider) {
+  const [account, setAccount] = useState('');
+  useEffect(() => {
+    if (provider && provider.getSigner) {
+      const signer = provider.getSigner();
+      signer.getAddress().then(add => {
+        if (add && add !== '0x0000000000000000000000000000000000000000') {
+          setAccount(add);
+        }
+      }).catch(e => {});
+    }
+  }, [provider]);
+  return account;
+}

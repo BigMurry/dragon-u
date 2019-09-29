@@ -12,7 +12,8 @@
     "dev": "next -p 9091",
     "go": "node ui.server.js",
     "start": "next build && node ui.server.js",
-    "gh-page": "next build && next export && touch out/.nojekyll"
+    "gh-page": "next build && next export && touch out/.nojekyll",
+    "gh-pub": "git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "@material-ui/core": "^4.4.3",

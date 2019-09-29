@@ -17,7 +17,7 @@ import QRCode from 'qrcode.react';
 import HeartIcon from 'mdi-material-ui/Heart';
 
 import { clearErrorStore, setErrorStore } from '../redux/store';
-import {useWeb3Provider} from './Web3Provider';
+import {useWeb3Provider, useAccount} from './Web3Provider';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -129,6 +129,7 @@ let Root = ({children, setError}) => {
   const [thankDialog, showThankDialog] = useState(false);
   const [copied, setCopied] = useState(false);
   const provider = useWeb3Provider();
+  const account = useAccount(provider);
 
   if (!provider) {
     return (
@@ -141,7 +142,7 @@ let Root = ({children, setError}) => {
     );
   }
   const signer = provider.getSigner();
-  const isLogin = !!signer;
+  const isLogin = !!account;
   return (
     <div className={classes.container}>
       <div className={classes.contWrapper}>
