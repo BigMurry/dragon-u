@@ -37,8 +37,7 @@
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-saga": "^1.1.1",
-    "web3": "^1.0.0-beta.37"
+    "redux-saga": "^1.1.1"
   },
   "devDependencies": {
     "xhstandard": "^2.0.0"
