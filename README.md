@@ -2,7 +2,7 @@
 tools ui for dragonereum
 
 # Live at
-https://dragon.localkitty.co
+https://bigmurry.github.io/dragon-u
 
 # How to run
 ```
