@@ -5785,12 +5785,13 @@ url@0.11.0, url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-ether-provider@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/use-ether-provider/-/use-ether-provider-1.0.4.tgz#b2bd43e923918b30288c80a4e463e599e045a7a6"
-  integrity sha512-R+oLvUJz+9v5uITDpE/pDnqYE8BZZFrN4/TOch1gmPak63C17f2NhrdSnatMmNl/v7k9bdeiFBg/70PedlJxEQ==
+use-ether-provider@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/use-ether-provider/-/use-ether-provider-1.0.6.tgz#28b9bffb29185ac831632cde59b17f1eccfac6e8"
+  integrity sha512-hUGHnPadtQoJgH1eRIkPsGX6mVLb/+BrYoeQWxM/U4SwWeQe+ceU3OcmQUW58733u/5gTLS5kNsThetgHo3lcQ==
   dependencies:
     lodash "^4.17.15"
+    prop-types "^15.7.2"
 
 use@^3.1.0:
   version "3.1.1"
