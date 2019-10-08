@@ -28421,6 +28421,8 @@ var ethers = _interopRequireWildcard(__webpack_require__(/*! ethers */ "./node_m
 
 var _get2 = _interopRequireDefault(__webpack_require__(/*! lodash/get */ "./node_modules/use-ether-provider/node_modules/lodash/get.js"));
 
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -28601,6 +28603,12 @@ const EtherProvider = function ({
 };
 
 exports.EtherProvider = EtherProvider;
+EtherProvider.propTypes = {
+  networks: _propTypes.default.arrayOf(_propTypes.default.number),
+  backupJsonRpcUrl: _propTypes.default.string,
+  ms: _propTypes.default.number,
+  children: _propTypes.default.node.isRequired
+};
 
 function useEtherProvider() {
   return _react.default.useContext(EtherContext);
