@@ -22,7 +22,7 @@
     "classnames": "^2.2.6",
     "dragon-g": "^1.0.4",
     "ethers": "^4.0.37",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "mdi-material-ui": "^6.7.0",
     "next": "^9.0.6",
     "next-redux-saga": "^4.0.2",
